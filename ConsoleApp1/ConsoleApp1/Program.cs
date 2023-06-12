@@ -8,14 +8,16 @@
 
         public int Bullets { get; private set; }
 
-        public Weapon(string name) 
+        public Weapon(string name, int damage, int bullets)
         {
             Name = name;
+            Damage = damage;
+            Bullets = bullets;
         }
 
         public void Fire(Player player)
         {
-            if(Bullets <= 0) 
+            if (Bullets <= 0 || Damage < 0)
                 return;
 
             player.TakeDamage(Damage);
@@ -27,7 +29,7 @@
     {
         public PlayerHealth PlayerHealth { get; private set; }
 
-        public Player(int value) 
+        public Player(int value)
         {
             PlayerHealth = new PlayerHealth(value);
         }
@@ -42,14 +44,14 @@
     {
         private int _hp;
 
-        public int HP 
-        { 
-            get { return _hp; } 
-            protected set 
-            { 
-                if (value > 0) 
-                    _hp = value; 
-            } 
+        public int HP
+        {
+            get { return _hp; }
+            protected set
+            {
+                if (value > 0)
+                    _hp = value;
+            }
         }
     }
 
@@ -60,7 +62,7 @@
 
     class PlayerHealth : Health, IDamageable
     {
-        public PlayerHealth(int health) 
+        public PlayerHealth(int health)
         {
             HP = health;
         }
@@ -74,7 +76,7 @@
 
     class EnemyHealth : Health, IDamageable
     {
-        public EnemyHealth(int  health)
+        public EnemyHealth(int health)
         {
             HP = health;
         }
