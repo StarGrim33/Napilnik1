@@ -50,7 +50,7 @@
             protected set
             {
                 if (value > 0)
-                    _hp = value;
+                    _hp = Math.Max(0, value);
             }
         }
     }
@@ -69,8 +69,10 @@
 
         public void TakeDamage(int value)
         {
-            if (value > 0)
+            if (HP > 0)
                 HP -= value;
+            else
+                Console.WriteLine("Player is already dead");
         }
     }
 
@@ -83,8 +85,10 @@
 
         public void TakeDamage(int value)
         {
-            if (value > 0)
+            if (HP > 0)
                 HP -= value;
+            else
+                Console.WriteLine("Player is already dead");
         }
     }
 
